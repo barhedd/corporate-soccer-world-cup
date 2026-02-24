@@ -1,0 +1,39 @@
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: corporate-soccer-world-cup-db
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=${SA_PASSWORD}
+    ports:
+      - "1433:1433"
+    volumes:
+      - sql_data:/var/opt/mssql
+
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: corporate-soccer-world-cup-api
+    depends_on:
+      - db
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=db;Database=${DB_NAME};User=sa;Password=${SA_PASSWORD};TrustServerCertificate=True;
+    ports:
+      - "5000:8080"
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: corporate-soccer-world-cup-frontend
+    depends_on:
+      - api
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:5000
+    ports:
+      - "3000:3000"
+
+volumes:
+  sql_data:
