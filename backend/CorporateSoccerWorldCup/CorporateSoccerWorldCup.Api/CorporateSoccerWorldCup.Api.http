@@ -1,0 +1,6 @@
+@CorporateSoccerWorldCup.Api_HostAddress = http://localhost:5241
+
+GET {{CorporateSoccerWorldCup.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
