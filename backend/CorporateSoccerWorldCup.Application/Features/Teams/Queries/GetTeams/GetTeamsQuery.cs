@@ -1,3 +1,9 @@
-﻿namespace CorporateSoccerWorldCup.Application.Features.Teams.Queries.GetTeams;
+﻿using CorporateSoccerWorldCup.Application.Common.Pagination;
 
-public record GetTeamsQuery();
+namespace CorporateSoccerWorldCup.Application.Features.Teams.Queries.GetTeams;
+
+public sealed class GetTeamsQuery : PagedQuery
+{
+    // Filters
+    public string? Name { get; init; }
+}

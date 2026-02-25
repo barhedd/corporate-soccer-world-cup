@@ -1,6 +1,7 @@
 ﻿using CorporateSoccerWorldCup.Api.Commons.Extensions;
 using CorporateSoccerWorldCup.Api.Contracts.Requests;
 using CorporateSoccerWorldCup.Application.Common.Interfaces;
+using CorporateSoccerWorldCup.Application.Common.Pagination;
 using CorporateSoccerWorldCup.Application.Features.Teams.Commands.CreateTeam;
 using CorporateSoccerWorldCup.Application.Features.Teams.DataTransferObjects;
 using CorporateSoccerWorldCup.Application.Features.Teams.Queries.GetTeams;
@@ -12,10 +13,10 @@ namespace CorporateSoccerWorldCup.Api.Controllers;
 [Route("api/[controller]")]
 public class TeamsController(
     ICommandHandler<CreateTeamCommand, Guid> createTeamHandler,
-    IQueryHandler<GetTeamsQuery, IEnumerable<TeamDto>> getTeamsHandler) : ControllerBase
+    IQueryHandler<GetTeamsQuery, PagedResult<TeamDto>> getTeamsHandler) : ControllerBase
 {
     private readonly ICommandHandler<CreateTeamCommand, Guid> _createTeamHandler = createTeamHandler;
-    private readonly IQueryHandler<GetTeamsQuery, IEnumerable<TeamDto>> _getTeamsHandler = getTeamsHandler;
+    private readonly IQueryHandler<GetTeamsQuery, PagedResult<TeamDto>> _getTeamsHandler = getTeamsHandler;
 
     [HttpPost]
     public async Task<IActionResult> Create(CreateTeamRequest request)
@@ -40,10 +41,19 @@ public class TeamsController(
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetAll()
+    public async Task<IActionResult> GetAll([FromQuery] GetTeamsRequest request)
     {
+        var query = new GetTeamsQuery
+        {
+            PageNumber = request.PageNumber,
+            PageSize = request.PageSize,
+            SortBy = request.SortBy,
+            SortDirection = request.SortDirection,
+            Name = request.Name,
+        };
+
         var result = await _getTeamsHandler.Handle(
-            new GetTeamsQuery(),
+            query,
             HttpContext.RequestAborted);
 
         if (result.Failure)
