@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace CorporateSoccerWorldCup.Application.Interfaces;
+namespace CorporateSoccerWorldCup.Infrastructure.ConnectionFactories;
 
 public interface IDbConnectionFactory
 {

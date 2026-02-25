@@ -1,5 +1,4 @@
-﻿using CorporateSoccerWorldCup.Application.Interfaces;
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 using System.Data;
 
 namespace CorporateSoccerWorldCup.Infrastructure.ConnectionFactories;

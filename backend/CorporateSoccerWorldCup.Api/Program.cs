@@ -1,5 +1,5 @@
+using CorporateSoccerWorldCup.Application.Common.Interfaces;
 using CorporateSoccerWorldCup.Application.Features.Teams.Interfaces;
-using CorporateSoccerWorldCup.Application.Interfaces;
 using CorporateSoccerWorldCup.Domain.Interfaces;
 using CorporateSoccerWorldCup.Domain.Interfaces.Repositories;
 using CorporateSoccerWorldCup.Infrastructure;

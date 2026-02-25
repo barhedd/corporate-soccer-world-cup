@@ -1,6 +1,6 @@
 ﻿using CorporateSoccerWorldCup.Application.Features.Teams.DataTransferObjects;
 using CorporateSoccerWorldCup.Application.Features.Teams.Interfaces;
-using CorporateSoccerWorldCup.Application.Interfaces;
+using CorporateSoccerWorldCup.Infrastructure.ConnectionFactories;
 using Dapper;
 
 namespace CorporateSoccerWorldCup.Infrastructure.Persistence.ReadRepositories;
