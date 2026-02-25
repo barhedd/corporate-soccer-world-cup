@@ -1,6 +1,12 @@
+using CorporateSoccerWorldCup.Application.Features.Teams.Interfaces;
 using CorporateSoccerWorldCup.Application.Interfaces;
+using CorporateSoccerWorldCup.Domain.Interfaces;
+using CorporateSoccerWorldCup.Domain.Interfaces.Repositories;
+using CorporateSoccerWorldCup.Infrastructure;
 using CorporateSoccerWorldCup.Infrastructure.ConnectionFactories;
 using CorporateSoccerWorldCup.Infrastructure.Contexts;
+using CorporateSoccerWorldCup.Infrastructure.Persistence.ReadRepositories;
+using CorporateSoccerWorldCup.Infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +17,23 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<ITeamRepository, TeamRepository>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+builder.Services.AddScoped<ITeamReadRepository, TeamReadRepository>();
+
+builder.Services.Scan(scan => scan
+    .FromApplicationDependencies()
+    .AddClasses(classes => classes.AssignableTo(typeof(ICommandHandler<,>)))
+    .AsImplementedInterfaces()
+    .WithScopedLifetime());
+
+builder.Services.Scan(scan => scan
+    .FromApplicationDependencies()
+    .AddClasses(classes => classes.AssignableTo(typeof(IQueryHandler<,>)))
+    .AsImplementedInterfaces()
+    .WithScopedLifetime());
 
 builder.Services.AddScoped<IDbConnectionFactory>(sp =>
 {
