@@ -1,4 +1,6 @@
-﻿namespace CorporateSoccerWorldCup.Domain.Entities;
+﻿using CorporateSoccerWorldCup.Domain.Entities.Common;
+
+namespace CorporateSoccerWorldCup.Domain.Entities;
 
 public class Goal : BaseEntity
 {

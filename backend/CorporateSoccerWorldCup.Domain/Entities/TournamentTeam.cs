@@ -1,4 +1,7 @@
-﻿namespace CorporateSoccerWorldCup.Domain.Entities;
+﻿using CorporateSoccerWorldCup.Domain.Entities.Common;
+using CorporateSoccerWorldCup.Domain.Entities.Teams;
+
+namespace CorporateSoccerWorldCup.Domain.Entities;
 
 public class TournamentTeam : BaseEntity
 {

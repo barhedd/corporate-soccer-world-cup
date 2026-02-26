@@ -1,7 +1,7 @@
-﻿using CorporateSoccerWorldCup.Domain.Interfaces;
+﻿using CorporateSoccerWorldCup.Domain.Abstractions;
 using CorporateSoccerWorldCup.Infrastructure.Contexts;
 
-namespace CorporateSoccerWorldCup.Infrastructure;
+namespace CorporateSoccerWorldCup.Infrastructure.Persistence;
 
 public class UnitOfWork(CorporateSoccerWorldCupContext dbContext) : IUnitOfWork
 {

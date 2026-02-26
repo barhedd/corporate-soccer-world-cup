@@ -1,10 +1,10 @@
 ﻿using CorporateSoccerWorldCup.Application.Common.Results;
 
-namespace CorporateSoccerWorldCup.Application.Common.Interfaces;
+namespace CorporateSoccerWorldCup.Application.Abstractions.Events;
 
-public interface ICommandHandler<TCommand, TResult>
+public interface IQueryHandler<TQuery, TResult>
 {
     Task<Result<TResult>> Handle(
-        TCommand command,
+        TQuery query,
         CancellationToken cancellationToken);
 }

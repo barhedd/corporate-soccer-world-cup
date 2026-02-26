@@ -1,9 +1,9 @@
-﻿using CorporateSoccerWorldCup.Application.Common.Errors;
-using CorporateSoccerWorldCup.Application.Common.Interfaces;
+﻿using CorporateSoccerWorldCup.Application.Abstractions.Events;
+using CorporateSoccerWorldCup.Application.Common.Errors;
 using CorporateSoccerWorldCup.Application.Common.Results;
-using CorporateSoccerWorldCup.Domain.Entities;
-using CorporateSoccerWorldCup.Domain.Interfaces;
-using CorporateSoccerWorldCup.Domain.Interfaces.Repositories;
+using CorporateSoccerWorldCup.Domain.Abstractions;
+using CorporateSoccerWorldCup.Domain.Abstractions.Repositories;
+using CorporateSoccerWorldCup.Domain.Entities.Teams;
 
 namespace CorporateSoccerWorldCup.Application.Features.Teams.Commands.CreateTeam;
 
@@ -23,11 +23,7 @@ public class CreateTeamCommandHandler(
                 "Team already exists",
                 ErrorCodes.DuplicateError);
 
-        var team = new Team
-        {
-            Name = command.Name,
-            ImageUrl = command.ImageUrl,
-        };
+        var team = Team.Create(command.Name, command.ImageUrl);
 
         await _teamRepository.AddAsync(team, cancellationToken);
         await _unitOfWork.CommitAsync(cancellationToken);

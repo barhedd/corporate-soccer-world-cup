@@ -1,6 +1,6 @@
-﻿using CorporateSoccerWorldCup.Domain.Entities;
+﻿using CorporateSoccerWorldCup.Domain.Entities.Teams;
 
-namespace CorporateSoccerWorldCup.Domain.Interfaces.Repositories;
+namespace CorporateSoccerWorldCup.Domain.Abstractions.Repositories;
 
 public interface ITeamRepository
 {

@@ -1,4 +1,4 @@
-﻿using CorporateSoccerWorldCup.Domain.Entities;
+﻿using CorporateSoccerWorldCup.Domain.Entities.Teams;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

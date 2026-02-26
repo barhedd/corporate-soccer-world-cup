@@ -1,4 +1,4 @@
-﻿namespace CorporateSoccerWorldCup.Domain.Interfaces;
+﻿namespace CorporateSoccerWorldCup.Domain.Abstractions;
 
 public interface IUnitOfWork
 {

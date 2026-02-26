@@ -1,13 +1,18 @@
-using CorporateSoccerWorldCup.Application.Common.Interfaces;
+using CorporateSoccerWorldCup.Api.Middlewares;
+using CorporateSoccerWorldCup.Application.Abstractions.Events;
+using CorporateSoccerWorldCup.Application.Abstractions.Messaging;
 using CorporateSoccerWorldCup.Application.Features.Teams.Interfaces;
-using CorporateSoccerWorldCup.Domain.Interfaces;
-using CorporateSoccerWorldCup.Domain.Interfaces.Repositories;
-using CorporateSoccerWorldCup.Infrastructure;
+using CorporateSoccerWorldCup.Domain.Abstractions;
+using CorporateSoccerWorldCup.Domain.Abstractions.Repositories;
 using CorporateSoccerWorldCup.Infrastructure.ConnectionFactories;
 using CorporateSoccerWorldCup.Infrastructure.Contexts;
+using CorporateSoccerWorldCup.Infrastructure.Events;
+using CorporateSoccerWorldCup.Infrastructure.Persistence;
 using CorporateSoccerWorldCup.Infrastructure.Persistence.ReadRepositories;
 using CorporateSoccerWorldCup.Infrastructure.Persistence.Repositories;
+using CorporateSoccerWorldCup.Infrastructure.Pipeline.Logging;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,23 +23,40 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Repositories
 builder.Services.AddScoped<ITeamRepository, TeamRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
+// Read Repositories
 builder.Services.AddScoped<ITeamReadRepository, TeamReadRepository>();
 
+// Event Dispatcher
+builder.Services.AddScoped<IDomainEventDispatcher, DomainEventDispatcher>();
+
+// Commands
 builder.Services.Scan(scan => scan
     .FromApplicationDependencies()
     .AddClasses(classes => classes.AssignableTo(typeof(ICommandHandler<,>)))
     .AsImplementedInterfaces()
     .WithScopedLifetime());
 
+// Queries
 builder.Services.Scan(scan => scan
     .FromApplicationDependencies()
     .AddClasses(classes => classes.AssignableTo(typeof(IQueryHandler<,>)))
     .AsImplementedInterfaces()
     .WithScopedLifetime());
 
+// Logging decorators
+builder.Services.Decorate(
+    typeof(ICommandHandler<,>),
+    typeof(LoggingCommandHandlerDecorator<,>));
+
+builder.Services.Decorate(
+    typeof(IQueryHandler<,>),
+    typeof(LoggingQueryHandlerDecorator<,>));
+
+// Database string connection configuration
 builder.Services.AddScoped<IDbConnectionFactory>(sp =>
 {
     var configuration = sp.GetRequiredService<IConfiguration>();
@@ -47,19 +69,35 @@ builder.Services.AddDbContext<CorporateSoccerWorldCupContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection")));
 
+// Serilog configuration
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Debug()
+    .Enrich.FromLogContext()
+    .Enrich.WithMachineName()
+    .Enrich.WithThreadId()
+    .WriteTo.Console(outputTemplate:
+            "[{Timestamp:HH:mm:ss} {Level:u3}] " +
+            "[CorrelationId: {CorrelationId}] " +
+            "[TraceId: {TraceId}] " +
+            "{Message:lj}{NewLine}{Exception}")
+    .CreateLogger();
+
+builder.Host.UseSerilog();
+
 var app = builder.Build();
 
+// Apply migrations and data seed to database
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
-    var context = services.GetRequiredService<CorporateSoccerWorldCupContext>();
+    var dbContext = services.GetRequiredService<CorporateSoccerWorldCupContext>();
 
     var retries = 5;
     while (retries > 0)
     {
         try
         {
-            context.Database.Migrate();
+            dbContext.Database.Migrate();
             break;
         }
         catch
@@ -78,6 +116,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseMiddleware<CorrelationMiddleware>();
 
 app.UseAuthorization();
 

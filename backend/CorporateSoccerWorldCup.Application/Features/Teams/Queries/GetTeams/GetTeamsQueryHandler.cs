@@ -1,5 +1,5 @@
-﻿using CorporateSoccerWorldCup.Application.Common.Errors;
-using CorporateSoccerWorldCup.Application.Common.Interfaces;
+﻿using CorporateSoccerWorldCup.Application.Abstractions.Events;
+using CorporateSoccerWorldCup.Application.Common.Errors;
 using CorporateSoccerWorldCup.Application.Common.Pagination;
 using CorporateSoccerWorldCup.Application.Common.Results;
 using CorporateSoccerWorldCup.Application.Features.Teams.DataTransferObjects;

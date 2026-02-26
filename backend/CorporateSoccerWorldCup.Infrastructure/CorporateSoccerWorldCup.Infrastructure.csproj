@@ -27,4 +27,8 @@
     <ProjectReference Include="..\CorporateSoccerWorldCup.Domain\CorporateSoccerWorldCup.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DataSeed\" />
+  </ItemGroup>
+
 </Project>

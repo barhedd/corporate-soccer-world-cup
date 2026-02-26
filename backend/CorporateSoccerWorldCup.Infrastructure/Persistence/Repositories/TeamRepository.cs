@@ -1,5 +1,5 @@
-﻿using CorporateSoccerWorldCup.Domain.Entities;
-using CorporateSoccerWorldCup.Domain.Interfaces.Repositories;
+﻿using CorporateSoccerWorldCup.Domain.Abstractions.Repositories;
+using CorporateSoccerWorldCup.Domain.Entities.Teams;
 using CorporateSoccerWorldCup.Infrastructure.Contexts;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,7 +12,7 @@ public class TeamRepository(CorporateSoccerWorldCupContext dbContext) : ITeamRep
     public async Task<bool> ExistByNameAsync(string name, CancellationToken cancellationToken)
     {
         return await _dbContext.Teams
-            .AnyAsync(team => team.Name == name);
+            .AnyAsync(team => team.Name == name, cancellationToken: cancellationToken);
     }
 
     public async Task AddAsync(Team team, CancellationToken cancellationToken)

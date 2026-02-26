@@ -1,6 +1,6 @@
 ﻿using CorporateSoccerWorldCup.Api.Commons.Extensions;
 using CorporateSoccerWorldCup.Api.Contracts.Requests;
-using CorporateSoccerWorldCup.Application.Common.Interfaces;
+using CorporateSoccerWorldCup.Application.Abstractions.Events;
 using CorporateSoccerWorldCup.Application.Common.Pagination;
 using CorporateSoccerWorldCup.Application.Features.Teams.Commands.CreateTeam;
 using CorporateSoccerWorldCup.Application.Features.Teams.DataTransferObjects;
