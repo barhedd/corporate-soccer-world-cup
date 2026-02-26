@@ -10,8 +10,11 @@ using CorporateSoccerWorldCup.Infrastructure.Events;
 using CorporateSoccerWorldCup.Infrastructure.Persistence;
 using CorporateSoccerWorldCup.Infrastructure.Persistence.ReadRepositories;
 using CorporateSoccerWorldCup.Infrastructure.Persistence.Repositories;
-using CorporateSoccerWorldCup.Infrastructure.Pipeline.Logging;
+using CorporateSoccerWorldCup.Infrastructure.Pipelines.Logging;
 using Microsoft.EntityFrameworkCore;
+using OpenTelemetry.Metrics;
+using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -83,6 +86,17 @@ Log.Logger = new LoggerConfiguration()
     .CreateLogger();
 
 builder.Host.UseSerilog();
+
+builder.Services.AddOpenTelemetry()
+    .WithTracing(tracing =>
+    {
+        tracing
+            .AddSource("CorporateSoccerWorldCup.Application")
+            .AddAspNetCoreInstrumentation()
+            .AddHttpClientInstrumentation()
+            .AddEntityFrameworkCoreInstrumentation()
+            .AddOtlpExporter();
+    });
 
 var app = builder.Build();
 

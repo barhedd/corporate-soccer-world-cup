@@ -10,6 +10,14 @@ services:
     volumes:
       - sql_data:/var/opt/mssql
 
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    container_name: corporate-soccer-world-cup-jaeger
+    ports:
+      - "16686:16686"   # UI
+      - "4317:4317"     # OTLP gRPC
+      - "4318:4318"     # OTLP HTTP
+
   api:
     build:
       context: ./backend
@@ -17,9 +25,15 @@ services:
     container_name: corporate-soccer-world-cup-api
     depends_on:
       - db
+      - jaeger
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__DefaultConnection=Server=db;Database=${DB_NAME};User=sa;Password=${SA_PASSWORD};TrustServerCertificate=True;
+      
+      # OpenTelemetry estándar
+      - OTEL_SERVICE_NAME=corporate-soccer-world-cup-api
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://jaeger:4317
+      - OTEL_EXPORTER_OTLP_PROTOCOL=grpc
     ports:
       - "5000:8080"
 
