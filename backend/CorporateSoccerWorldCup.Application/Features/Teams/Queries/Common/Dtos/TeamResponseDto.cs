@@ -1,6 +1,6 @@
-﻿namespace CorporateSoccerWorldCup.Application.Features.Teams.DataTransferObjects;
+﻿namespace CorporateSoccerWorldCup.Application.Features.Teams.Queries.Common.Dtos;
 
-public record TeamDto
+public record TeamResponseDto
 {
     public Guid Id { get; init; }
     public string Name { get; init; } = string.Empty;

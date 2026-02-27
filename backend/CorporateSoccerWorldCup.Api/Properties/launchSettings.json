@@ -38,6 +38,13 @@
       },
       "publishAllPorts": true,
       "useSSL": true
+    },
+    "CorporateSoccerWorldCup.Api": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "OTEL_EXPORTER_OTLP_ENDPOINT": "http://localhost:4317",
+        "OTEL_SERVICE_NAME": "corporate-soccer-world-cup-api"
+      }
     }
   },
   "$schema": "http://json.schemastore.org/launchsettings.json",

@@ -9,14 +9,16 @@ public class TeamRepository(CorporateSoccerWorldCupContext dbContext) : ITeamRep
 {
     private readonly CorporateSoccerWorldCupContext _dbContext = dbContext;
 
-    public async Task<bool> ExistByNameAsync(string name, CancellationToken cancellationToken)
-    {
-        return await _dbContext.Teams
-            .AnyAsync(team => team.Name == name, cancellationToken: cancellationToken);
-    }
+    public async Task<bool> ExistByNameAsync(string name, CancellationToken cancellationToken) =>
+        await _dbContext.Teams
+            .AnyAsync(team => team.Name == name, cancellationToken);
 
-    public async Task AddAsync(Team team, CancellationToken cancellationToken)
-    {
+    public async Task AddAsync(Team team, CancellationToken cancellationToken) =>
         await _dbContext.Teams.AddAsync(team, cancellationToken);
-    }
+
+    public async Task<Team?> GetByIdAsync(Guid id, CancellationToken cancellationToken) =>
+        await _dbContext.Teams.FindAsync([id], cancellationToken);
+
+    public void Delete(Team team) =>
+        _dbContext.Teams.Remove(team);
 }

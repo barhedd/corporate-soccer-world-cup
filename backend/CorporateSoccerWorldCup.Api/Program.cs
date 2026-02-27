@@ -1,7 +1,7 @@
 using CorporateSoccerWorldCup.Api.Middlewares;
 using CorporateSoccerWorldCup.Application.Abstractions.Events;
 using CorporateSoccerWorldCup.Application.Abstractions.Messaging;
-using CorporateSoccerWorldCup.Application.Features.Teams.Interfaces;
+using CorporateSoccerWorldCup.Application.Features.Teams.Queries.Common.Interfaces;
 using CorporateSoccerWorldCup.Domain.Abstractions;
 using CorporateSoccerWorldCup.Domain.Abstractions.Repositories;
 using CorporateSoccerWorldCup.Infrastructure.ConnectionFactories;
@@ -13,7 +13,6 @@ using CorporateSoccerWorldCup.Infrastructure.Persistence.Repositories;
 using CorporateSoccerWorldCup.Infrastructure.Pipelines.Logging;
 using Microsoft.EntityFrameworkCore;
 using OpenTelemetry.Metrics;
-using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 using Serilog;
 

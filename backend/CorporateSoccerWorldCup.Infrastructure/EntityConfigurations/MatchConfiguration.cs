@@ -1,4 +1,4 @@
-﻿using CorporateSoccerWorldCup.Domain.Entities;
+﻿using CorporateSoccerWorldCup.Domain.Entities.Matches;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -17,6 +17,10 @@ public class MatchConfiguration : IEntityTypeConfiguration<Match>
 
         builder.Property(m => m.LocalGoals);
         builder.Property(m => m.GuestGoals);
+
+        builder.Property(m => m.Status)
+            .HasConversion<int>()
+            .IsRequired();
 
         builder.HasOne(m => m.Tournament)
             .WithMany(t => t.Matches)

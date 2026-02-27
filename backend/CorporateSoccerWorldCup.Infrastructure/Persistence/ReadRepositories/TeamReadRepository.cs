@@ -1,6 +1,6 @@
 ﻿using CorporateSoccerWorldCup.Application.Common.Pagination;
-using CorporateSoccerWorldCup.Application.Features.Teams.DataTransferObjects;
-using CorporateSoccerWorldCup.Application.Features.Teams.Interfaces;
+using CorporateSoccerWorldCup.Application.Features.Teams.Queries.Common.Dtos;
+using CorporateSoccerWorldCup.Application.Features.Teams.Queries.Common.Interfaces;
 using CorporateSoccerWorldCup.Application.Features.Teams.Queries.GetTeams;
 using CorporateSoccerWorldCup.Infrastructure.ConnectionFactories;
 using CorporateSoccerWorldCup.Infrastructure.Persistence.Helpers;
@@ -12,7 +12,7 @@ public class TeamReadRepository(IDbConnectionFactory dbConnectionFactory) : ITea
 {
     private readonly IDbConnectionFactory _dbConnectionFactory = dbConnectionFactory;
 
-    public async Task<PagedResult<TeamDto>> GetPagedAsync(
+    public async Task<PagedResult<TeamResponseDto>> GetPagedAsync(
     GetTeamsQuery query,
     CancellationToken cancellationToken)
     {
@@ -66,18 +66,31 @@ public class TeamReadRepository(IDbConnectionFactory dbConnectionFactory) : ITea
             template.RawSql,
             template.Parameters);
 
-        var data = await multi.ReadAsync<TeamDto>();
+        var data = await multi.ReadAsync<TeamResponseDto>();
         var total = await multi.ReadSingleAsync<int>();
 
-        return new PagedResult<TeamDto>(
+        return new PagedResult<TeamResponseDto>(
             data,
             query.PageNumber,
             query.PageSize,
             total);
     }
 
-    public Task<TeamDto> GetByIdAsync(Guid id, CancellationToken cancellationToken)
+    public async Task<TeamResponseDto?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        using var connection = _dbConnectionFactory.CreateConnection();
+
+        const string sql = @"
+            SELECT Id, Name, ImageUrl
+            FROM Teams
+            WHERE Id = @Id
+              AND IsDeleted = 0
+        ";
+
+        var team = await connection.QuerySingleOrDefaultAsync<TeamResponseDto>(
+            sql,
+            new { Id = id });
+
+        return team;
     }
 }

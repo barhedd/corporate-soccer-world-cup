@@ -1,4 +1,4 @@
-﻿namespace CorporateSoccerWorldCup.Api.Contracts.Requests;
+﻿namespace CorporateSoccerWorldCup.Api.Controllers.Teams.Contracts;
 
 public record CreateTeamRequest
 {

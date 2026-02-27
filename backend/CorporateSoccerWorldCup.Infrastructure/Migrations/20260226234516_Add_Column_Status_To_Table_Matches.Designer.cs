@@ -4,6 +4,7 @@ using CorporateSoccerWorldCup.Infrastructure.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CorporateSoccerWorldCup.Infrastructure.Migrations
 {
     [DbContext(typeof(CorporateSoccerWorldCupContext))]
-    partial class CorporateSoccerWorldCupContextModelSnapshot : ModelSnapshot
+    [Migration("20260226234516_Add_Column_Status_To_Table_Matches")]
+    partial class Add_Column_Status_To_Table_Matches
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

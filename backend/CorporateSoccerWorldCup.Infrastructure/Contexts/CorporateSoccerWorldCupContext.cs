@@ -1,6 +1,7 @@
 ﻿using CorporateSoccerWorldCup.Application.Abstractions.Messaging;
 using CorporateSoccerWorldCup.Domain.Entities;
 using CorporateSoccerWorldCup.Domain.Entities.Common;
+using CorporateSoccerWorldCup.Domain.Entities.Matches;
 using CorporateSoccerWorldCup.Domain.Entities.Teams;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
@@ -47,7 +48,7 @@ public class CorporateSoccerWorldCupContext(
     }
 
     public override async Task<int> SaveChangesAsync(
-    CancellationToken cancellationToken = default)
+        CancellationToken cancellationToken = default)
     {
         var now = DateTimeOffset.UtcNow;
 
