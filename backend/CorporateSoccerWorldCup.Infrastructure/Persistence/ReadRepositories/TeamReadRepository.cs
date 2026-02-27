@@ -13,8 +13,8 @@ public class TeamReadRepository(IDbConnectionFactory dbConnectionFactory) : ITea
     private readonly IDbConnectionFactory _dbConnectionFactory = dbConnectionFactory;
 
     public async Task<PagedResult<TeamResponseDto>> GetPagedAsync(
-    GetTeamsQuery query,
-    CancellationToken cancellationToken)
+        GetTeamsQuery query,
+        CancellationToken cancellationToken)
     {
         using var connection = _dbConnectionFactory.CreateConnection();
 

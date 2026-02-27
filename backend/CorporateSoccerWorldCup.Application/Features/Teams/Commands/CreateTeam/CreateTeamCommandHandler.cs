@@ -1,4 +1,4 @@
-﻿using CorporateSoccerWorldCup.Application.Abstractions.Events;
+﻿using CorporateSoccerWorldCup.Application.Common.Abstractions.Events;
 using CorporateSoccerWorldCup.Application.Common.Errors;
 using CorporateSoccerWorldCup.Application.Common.Results;
 using CorporateSoccerWorldCup.Domain.Abstractions;

@@ -1,0 +1,186 @@
+[
+  {
+    "Id": "112effdd-54aa-4cb4-936d-52733891406c",
+    "Name": "Joan Garcia",
+    "Birthday": "2000-02-26T00:00:00Z",
+    "TeamId": "de7990f8-9a1d-4f0e-b6a2-a6294e814a74",
+    "StatusId": "a1741079-c986-48cd-902e-b2d3efa41d93",
+    "CreatedDate": "2026-02-26T00:00:00Z",
+    "CreatedBy": "SYSTEM"
+  },
+  {
+    "Id": "ea50aaf7-14d3-4e6c-9441-08f9d0d440e4",
+    "Name": "Pau Cubarsi",
+    "Birthday": "2000-02-26T00:00:00Z",
+    "TeamId": "de7990f8-9a1d-4f0e-b6a2-a6294e814a74",
+    "StatusId": "41f1001a-abfb-4456-be7a-9b5eaf156525",
+    "SanctionedMatchesRemaining": 1,
+    "CreatedDate": "2026-02-26T00:00:00Z",
+    "CreatedBy": "SYSTEM"
+  },
+  {
+    "Id": "cdc6e1ad-c2b0-4088-9b5c-7bbf8bf2da86",
+    "Name": "Pedri Gonzalez",
+    "Birthday": "2000-02-26T00:00:00Z",
+    "TeamId": "de7990f8-9a1d-4f0e-b6a2-a6294e814a74",
+    "StatusId": "ff50444a-d941-4c1c-9fb0-9e64d5efb5b5",
+    "CreatedDate": "2026-02-26T00:00:00Z",
+    "CreatedBy": "SYSTEM"
+  },
+  {
+    "Id": "854b0f2f-f439-4d3b-9010-42d5ce5e08d1",
+    "Name": "Lamine Yamal",
+    "Birthday": "2000-02-26T00:00:00Z",
+    "TeamId": "de7990f8-9a1d-4f0e-b6a2-a6294e814a74",
+    "StatusId": "a1741079-c986-48cd-902e-b2d3efa41d93",
+    "CreatedDate": "2026-02-26T00:00:00Z",
+    "CreatedBy": "SYSTEM"
+  },
+  {
+    "Id": "55c9b956-526a-4b61-8553-cfe5d37f9dc3",
+    "Name": "Robert Lewandowski",
+    "Birthday": "2000-02-26T00:00:00Z",
+    "TeamId": "de7990f8-9a1d-4f0e-b6a2-a6294e814a74",
+    "StatusId": "a1741079-c986-48cd-902e-b2d3efa41d93",
+    "CreatedDate": "2026-02-26T00:00:00Z",
+    "CreatedBy": "SYSTEM"
+  },
+  {
+    "Id": "73ac43bf-ff5b-4016-96ba-19d65ef6ed32",
+    "Name": "Thibaut Courtois",
+    "Birthday": "2000-02-26T00:00:00Z",
+    "TeamId": "40b5f12c-f3ee-4dfd-b2a6-cb11c4cefe2e",
+    "StatusId": "a1741079-c986-48cd-902e-b2d3efa41d93",
+    "CreatedDate": "2026-02-26T00:00:00Z",
+    "CreatedBy": "SYSTEM"
+  },
+  {
+    "Id": "9fec7b6e-92b9-491a-97d1-a6a470aa2111",
+    "Name": "Kylian Mbappe",
+    "Birthday": "2000-02-26T00:00:00Z",
+    "TeamId": "40b5f12c-f3ee-4dfd-b2a6-cb11c4cefe2e",
+    "StatusId": "a1741079-c986-48cd-902e-b2d3efa41d93",
+    "CreatedDate": "2026-02-26T00:00:00Z",
+    "CreatedBy": "SYSTEM"
+  },
+  {
+    "Id": "59cd3a49-986d-4873-9a74-cb2a25774b18",
+    "Name": "Jude Bellingham",
+    "Birthday": "2000-02-26T00:00:00Z",
+    "TeamId": "40b5f12c-f3ee-4dfd-b2a6-cb11c4cefe2e",
+    "StatusId": "a1741079-c986-48cd-902e-b2d3efa41d93",
+    "CreatedDate": "2026-02-26T00:00:00Z",
+    "CreatedBy": "SYSTEM"
+  },
+  {
+    "Id": "a8b7c2e1-e732-478f-b7f3-d315f4f7fae1",
+    "Name": "Federico Valverde",
+    "Birthday": "2000-02-26T00:00:00Z",
+    "TeamId": "40b5f12c-f3ee-4dfd-b2a6-cb11c4cefe2e",
+    "StatusId": "ff50444a-d941-4c1c-9fb0-9e64d5efb5b5",
+    "CreatedDate": "2026-02-26T00:00:00Z",
+    "CreatedBy": "SYSTEM"
+  },
+  {
+    "Id": "f59ee786-6655-46e0-9f9e-03b37d3bbd9f",
+    "Name": "Vinicius Jr",
+    "Birthday": "2000-02-26T00:00:00Z",
+    "TeamId": "40b5f12c-f3ee-4dfd-b2a6-cb11c4cefe2e",
+    "StatusId": "41f1001a-abfb-4456-be7a-9b5eaf156525",
+    "SanctionedMatchesRemaining": 2,
+    "CreatedDate": "2026-02-26T00:00:00Z",
+    "CreatedBy": "SYSTEM"
+  },
+  {
+    "Id": "e079305a-f8fb-4bf4-9f0c-204ee869766a",
+    "Name": "Harry Kane",
+    "Birthday": "2000-02-26T00:00:00Z",
+    "TeamId": "b59d0b09-c989-4436-9fbb-4b154e6c34cb",
+    "StatusId": "a1741079-c986-48cd-902e-b2d3efa41d93",
+    "CreatedDate": "2026-02-26T00:00:00Z",
+    "CreatedBy": "SYSTEM"
+  },
+  {
+    "Id": "15960851-b0e3-4efe-bd36-dbfdb1ba2726",
+    "Name": "Luis Diaz",
+    "Birthday": "2000-02-26T00:00:00Z",
+    "TeamId": "b59d0b09-c989-4436-9fbb-4b154e6c34cb",
+    "StatusId": "41f1001a-abfb-4456-be7a-9b5eaf156525",
+    "SanctionedMatchesRemaining": 3,
+    "CreatedDate": "2026-02-26T00:00:00Z",
+    "CreatedBy": "SYSTEM"
+  },
+  {
+    "Id": "22e213fc-9af4-40e2-af30-73e0a18836be",
+    "Name": "Jamal Musiala",
+    "Birthday": "2000-02-26T00:00:00Z",
+    "TeamId": "b59d0b09-c989-4436-9fbb-4b154e6c34cb",
+    "StatusId": "ff50444a-d941-4c1c-9fb0-9e64d5efb5b5",
+    "CreatedDate": "2026-02-26T00:00:00Z",
+    "CreatedBy": "SYSTEM"
+  },
+  {
+    "Id": "2cbd53b9-1103-46c3-8632-8bde7a572f32",
+    "Name": "Manuel Neuer",
+    "Birthday": "2000-02-26T00:00:00Z",
+    "TeamId": "b59d0b09-c989-4436-9fbb-4b154e6c34cb",
+    "StatusId": "a1741079-c986-48cd-902e-b2d3efa41d93",
+    "CreatedDate": "2026-02-26T00:00:00Z",
+    "CreatedBy": "SYSTEM"
+  },
+  {
+    "Id": "e692082c-74ea-4375-add6-2e50d4be5bbd",
+    "Name": "Joshua Kimmich",
+    "Birthday": "2000-02-26T00:00:00Z",
+    "TeamId": "b59d0b09-c989-4436-9fbb-4b154e6c34cb",
+    "StatusId": "a1741079-c986-48cd-902e-b2d3efa41d93",
+    "CreatedDate": "2026-02-26T00:00:00Z",
+    "CreatedBy": "SYSTEM"
+  }, 
+  {
+    "Id": "cdb1b085-ab2c-41e2-b176-89816af4aa07",
+    "Name": "Mohammed Salah",
+    "Birthday": "2000-02-26T00:00:00Z",
+    "TeamId": "fc6053c9-6079-4359-ac08-6321d87e91bf",
+    "StatusId": "a1741079-c986-48cd-902e-b2d3efa41d93",
+    "CreatedDate": "2026-02-26T00:00:00Z",
+    "CreatedBy": "SYSTEM"
+  },
+  {
+    "Id": "d05c1754-e9e4-4f26-b370-4aefcbe774bb",
+    "Name": "Florian Wirtz",
+    "Birthday": "2000-02-26T00:00:00Z",
+    "TeamId": "fc6053c9-6079-4359-ac08-6321d87e91bf",
+    "StatusId": "ff50444a-d941-4c1c-9fb0-9e64d5efb5b5",
+    "CreatedDate": "2026-02-26T00:00:00Z",
+    "CreatedBy": "SYSTEM"
+  },
+  {
+    "Id": "f0ba8e48-4bb5-4082-a0f1-e6b2da4a5230",
+    "Name": "Virgil Van Dijk",
+    "Birthday": "2000-02-26T00:00:00Z",
+    "TeamId": "fc6053c9-6079-4359-ac08-6321d87e91bf",
+    "StatusId": "41f1001a-abfb-4456-be7a-9b5eaf156525",
+    "SanctionedMatchesRemaining": 1,
+    "CreatedDate": "2026-02-26T00:00:00Z",
+    "CreatedBy": "SYSTEM"
+  },
+  {
+    "Id": "cf7231f6-6e67-4bff-8bec-daa5ca8270aa",
+    "Name": "Allison Becker",
+    "Birthday": "2000-02-26T00:00:00Z",
+    "TeamId": "fc6053c9-6079-4359-ac08-6321d87e91bf",
+    "StatusId": "a1741079-c986-48cd-902e-b2d3efa41d93",
+    "CreatedDate": "2026-02-26T00:00:00Z",
+    "CreatedBy": "SYSTEM"
+  },
+  {
+    "Id": "c4f6a98a-b299-404b-8d33-4831a8ae93ff",
+    "Name": "Alexander Isak",
+    "Birthday": "2000-02-26T00:00:00Z",
+    "TeamId": "fc6053c9-6079-4359-ac08-6321d87e91bf",
+    "StatusId": "a1741079-c986-48cd-902e-b2d3efa41d93",
+    "CreatedDate": "2026-02-26T00:00:00Z",
+    "CreatedBy": "SYSTEM"
+  }
+]

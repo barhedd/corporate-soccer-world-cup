@@ -1,6 +1,6 @@
 ﻿using CorporateSoccerWorldCup.Application.Common.Results;
 
-namespace CorporateSoccerWorldCup.Application.Abstractions.Events;
+namespace CorporateSoccerWorldCup.Application.Common.Abstractions.Events;
 
 public interface IQueryHandler<TQuery, TResult>
 {

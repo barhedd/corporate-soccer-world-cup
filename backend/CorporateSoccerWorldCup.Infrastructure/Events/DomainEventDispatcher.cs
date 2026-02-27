@@ -1,4 +1,4 @@
-﻿using CorporateSoccerWorldCup.Application.Abstractions.Messaging;
+﻿using CorporateSoccerWorldCup.Application.Common.Abstractions.Messaging;
 using CorporateSoccerWorldCup.Domain.Entities.Common;
 using Microsoft.Extensions.Logging;
 

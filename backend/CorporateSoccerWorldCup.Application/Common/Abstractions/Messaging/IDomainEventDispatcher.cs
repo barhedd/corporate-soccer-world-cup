@@ -1,6 +1,6 @@
 ﻿using CorporateSoccerWorldCup.Domain.Entities.Common;
 
-namespace CorporateSoccerWorldCup.Application.Abstractions.Messaging;
+namespace CorporateSoccerWorldCup.Application.Common.Abstractions.Messaging;
 
 public interface IDomainEventDispatcher
 {

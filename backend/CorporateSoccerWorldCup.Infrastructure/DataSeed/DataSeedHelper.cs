@@ -41,5 +41,13 @@ public static class DataSeedHelper
             await dbContext.Teams.AddRangeAsync(teams);
             await dbContext.SaveChangesAsync();
         }
+
+        // --- Players ---
+        if (!dbContext.Players.Any())
+        {
+            var players = LoadJson<Player>("players.json");
+            await dbContext.Players.AddRangeAsync(players);
+            await dbContext.SaveChangesAsync();
+        }
     }
 }

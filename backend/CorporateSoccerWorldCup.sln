@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36811.4 d17.14
+VisualStudioVersion = 17.14.36811.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CorporateSoccerWorldCup.Api", "CorporateSoccerWorldCup.Api\CorporateSoccerWorldCup.Api.csproj", "{809FFA8C-EF3E-4377-84CD-EDE87824DAA1}"
 EndProject
@@ -12,6 +12,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CorporateSoccerWorldCup.Application", "CorporateSoccerWorldCup.Application\CorporateSoccerWorldCup.Application.csproj", "{2C1FCBC7-BFD6-4C75-A450-EBE7CE72EA3C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CorporateSoccerWorldCup.Infrastructure", "CorporateSoccerWorldCup.Infrastructure\CorporateSoccerWorldCup.Infrastructure.csproj", "{116E08BC-6EA8-434C-8271-20E47B3878E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CorporateSoccerWorldCup.Tests", "CorporateSoccerWorldCup.Tests\CorporateSoccerWorldCup.Tests.csproj", "{51D952CF-4EB7-46ED-8631-949EE99A1BB0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{757C10A1-AF82-4037-9EE0-24CB43AECB36}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +39,10 @@ Global
 		{116E08BC-6EA8-434C-8271-20E47B3878E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{116E08BC-6EA8-434C-8271-20E47B3878E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{116E08BC-6EA8-434C-8271-20E47B3878E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51D952CF-4EB7-46ED-8631-949EE99A1BB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51D952CF-4EB7-46ED-8631-949EE99A1BB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51D952CF-4EB7-46ED-8631-949EE99A1BB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51D952CF-4EB7-46ED-8631-949EE99A1BB0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,6 +52,7 @@ Global
 		{142A5263-BD08-40CD-B418-78573141F499} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{2C1FCBC7-BFD6-4C75-A450-EBE7CE72EA3C} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{116E08BC-6EA8-434C-8271-20E47B3878E7} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{51D952CF-4EB7-46ED-8631-949EE99A1BB0} = {757C10A1-AF82-4037-9EE0-24CB43AECB36}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {14D3D5B2-9E2C-4EE1-B64B-B07FC18D040F}

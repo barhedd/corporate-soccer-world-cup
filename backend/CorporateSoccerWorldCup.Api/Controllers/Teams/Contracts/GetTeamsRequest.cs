@@ -1,12 +1,9 @@
-﻿namespace CorporateSoccerWorldCup.Api.Controllers.Teams.Contracts;
+﻿using CorporateSoccerWorldCup.Api.Commons.Contracts;
 
-public record GetTeamsRequest
+namespace CorporateSoccerWorldCup.Api.Controllers.Teams.Contracts;
+
+public sealed class GetTeamsRequest : PagedQueryRequest
 {
-    public int PageNumber { get; init; } = 1;
-    public int PageSize { get; init; } = 10;
-    public string? SortBy { get; init; }
-    public string? SortDirection { get; init; }
-
     // filtros
     public string? Name { get; init; }
 }

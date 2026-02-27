@@ -1,6 +1,7 @@
 using CorporateSoccerWorldCup.Api.Middlewares;
-using CorporateSoccerWorldCup.Application.Abstractions.Events;
-using CorporateSoccerWorldCup.Application.Abstractions.Messaging;
+using CorporateSoccerWorldCup.Application.Common.Abstractions.Events;
+using CorporateSoccerWorldCup.Application.Common.Abstractions.Messaging;
+using CorporateSoccerWorldCup.Application.Features.Players.Queries.Common.Interfaces;
 using CorporateSoccerWorldCup.Application.Features.Teams.Queries.Common.Interfaces;
 using CorporateSoccerWorldCup.Domain.Abstractions;
 using CorporateSoccerWorldCup.Domain.Abstractions.Repositories;
@@ -28,10 +29,13 @@ builder.Services.AddSwaggerGen();
 
 // Repositories
 builder.Services.AddScoped<ITeamRepository, TeamRepository>();
+builder.Services.AddScoped<IPlayerRepository, PlayerRepository>();
+builder.Services.AddScoped<IPlayerStatusRepository, PlayerStatusRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 // Read Repositories
 builder.Services.AddScoped<ITeamReadRepository, TeamReadRepository>();
+builder.Services.AddScoped<IPlayerReadRepository, PlayerReadRepository>();
 
 // Event Dispatcher
 builder.Services.AddScoped<IDomainEventDispatcher, DomainEventDispatcher>();

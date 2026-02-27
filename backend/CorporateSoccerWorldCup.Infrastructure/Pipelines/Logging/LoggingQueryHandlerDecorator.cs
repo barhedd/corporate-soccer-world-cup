@@ -1,7 +1,6 @@
-﻿using CorporateSoccerWorldCup.Application.Abstractions.Events;
+﻿using CorporateSoccerWorldCup.Application.Common.Abstractions.Events;
 using CorporateSoccerWorldCup.Application.Common.Results;
 using Microsoft.Extensions.Logging;
-using OpenTelemetry.Trace;
 using System.Diagnostics;
 
 namespace CorporateSoccerWorldCup.Infrastructure.Pipelines.Logging;
