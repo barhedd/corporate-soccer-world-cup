@@ -1,0 +1,30 @@
+[
+  {
+    "Id": "9df6ed6d-b42b-4c0a-b01f-18ccd6baa6c3",
+    "Name": "Scheduled",
+    "Status": 1,
+    "CreatedDate": "2026-02-26T00:00:00Z",
+    "CreatedBy": "SYSTEM"
+  },
+  {
+    "Id": "cf158a24-c411-48cc-88c2-f1fcf49da3b1",
+    "Name": "In Progress",
+    "Status": 2,
+    "CreatedDate": "2026-02-26T00:00:00Z",
+    "CreatedBy": "SYSTEM"
+  },
+  {
+    "Id": "4c2b4d73-ae70-4308-9d80-c6b1b49d8324",
+    "Name": "Finished",
+    "Status": 3,
+    "CreatedDate": "2026-02-26T00:00:00Z",
+    "CreatedBy": "SYSTEM"
+  },
+  {
+    "Id": "fd3c35a4-683b-4721-901a-b5d6edb23b5b",
+    "Name": "Cancelled",
+    "Status": 4,
+    "CreatedDate": "2026-02-26T00:00:00Z",
+    "CreatedBy": "SYSTEM"
+  }
+]

@@ -1,0 +1,30 @@
+[
+  {
+    "Id": "7dcfd5da-fad5-4bad-9900-f073038f197c",
+    "Name": "Available",
+    "Status": 1,
+    "CreatedDate": "02/26/2026",
+    "CreatedBy": "SYSTEM"
+  },
+  {
+    "Id": "632031df-5de6-41c2-8827-f069d50bf45b",
+    "Name": "Sanctionated",
+    "Status": 2,
+    "CreatedDate": "02/26/2026",
+    "CreatedBy": "SYSTEM"
+  },
+  {
+    "Id": "cac28625-d0c8-47ae-bcf7-a0f044da00c2",
+    "Name": "Injured",
+    "Status": 3,
+    "CreatedDate": "02/26/2026",
+    "CreatedBy": "SYSTEM"
+  },
+  {
+    "Id": "d09489f4-9959-48e3-8818-126dbdc4cc82",
+    "Name": "Disqualified",
+    "Status": 4,
+    "CreatedDate": "02/26/2026",
+    "CreatedBy": "SYSTEM"
+  }
+]

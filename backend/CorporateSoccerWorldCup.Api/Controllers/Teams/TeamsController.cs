@@ -2,7 +2,6 @@
 using CorporateSoccerWorldCup.Api.Controllers.Teams.Contracts;
 using CorporateSoccerWorldCup.Application.Abstractions.Events;
 using CorporateSoccerWorldCup.Application.Common.Pagination;
-using CorporateSoccerWorldCup.Application.Common.Results;
 using CorporateSoccerWorldCup.Application.Features.Teams.Commands.CreateTeam;
 using CorporateSoccerWorldCup.Application.Features.Teams.Commands.DeleteTeam;
 using CorporateSoccerWorldCup.Application.Features.Teams.Commands.UpdateTeam;
@@ -20,13 +19,13 @@ public class TeamsController(
     IQueryHandler<GetTeamsQuery, PagedResult<TeamResponseDto>> getTeamsHandler,
     IQueryHandler<GetTeamByIdQuery, TeamResponseDto> getTeamByIdHandler,
     ICommandHandler<UpdateTeamCommand, TeamResponseDto> updateTeamHandler,
-    ICommandHandler<DeleteTeamCommand, Result> deleteTeamHandler) : ControllerBase
+    ICommandHandler<DeleteTeamCommand> deleteTeamHandler) : ControllerBase
 {
     private readonly ICommandHandler<CreateTeamCommand, Guid> _createTeamHandler = createTeamHandler;
     private readonly IQueryHandler<GetTeamsQuery, PagedResult<TeamResponseDto>> _getTeamsHandler = getTeamsHandler;
     private readonly IQueryHandler<GetTeamByIdQuery, TeamResponseDto> _getTeamByIdHandler = getTeamByIdHandler;
     private readonly ICommandHandler<UpdateTeamCommand, TeamResponseDto> _updateTeamHandler = updateTeamHandler;
-    private readonly ICommandHandler<DeleteTeamCommand, Result> _deleteTeamHandler = deleteTeamHandler;
+    private readonly ICommandHandler<DeleteTeamCommand> _deleteTeamHandler = deleteTeamHandler;
 
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] CreateTeamRequest request)

@@ -1,5 +1,4 @@
 ﻿using CorporateSoccerWorldCup.Domain.Entities.Common;
-using CorporateSoccerWorldCup.Domain.Entities.Matches;
 
 namespace CorporateSoccerWorldCup.Domain.Entities;
 

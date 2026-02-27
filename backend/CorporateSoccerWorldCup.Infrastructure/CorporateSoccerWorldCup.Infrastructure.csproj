@@ -29,7 +29,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DataSeed\" />
+    <None Update="DataSeed\*.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
 
 </Project>

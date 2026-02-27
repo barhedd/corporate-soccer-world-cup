@@ -6,11 +6,51 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CorporateSoccerWorldCup.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial_Migration : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "MatchStatuses",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EditedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    EditedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DeletedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    DeletedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MatchStatuses", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PlayerStatuses",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EditedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    EditedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DeletedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    DeletedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PlayerStatuses", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Teams",
                 columns: table => new
@@ -59,6 +99,8 @@ namespace CorporateSoccerWorldCup.Infrastructure.Migrations
                     Name = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     Birthday = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
                     TeamId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    StatusId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    SanctionedMatchesRemaining = table.Column<int>(type: "int", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     CreatedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -70,6 +112,12 @@ namespace CorporateSoccerWorldCup.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Players", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Players_PlayerStatuses_StatusId",
+                        column: x => x.StatusId,
+                        principalTable: "PlayerStatuses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Players_Teams_TeamId",
                         column: x => x.TeamId,
@@ -86,6 +134,7 @@ namespace CorporateSoccerWorldCup.Infrastructure.Migrations
                     TournamentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     LocalTeamId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     GuestTeamId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    StatusId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     LocalGoals = table.Column<int>(type: "int", nullable: false),
                     GuestGoals = table.Column<int>(type: "int", nullable: false),
                     Date = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
@@ -100,6 +149,12 @@ namespace CorporateSoccerWorldCup.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Matches", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Matches_MatchStatuses_StatusId",
+                        column: x => x.StatusId,
+                        principalTable: "MatchStatuses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Matches_Teams_GuestTeamId",
                         column: x => x.GuestTeamId,
@@ -206,9 +261,19 @@ namespace CorporateSoccerWorldCup.Infrastructure.Migrations
                 column: "LocalTeamId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Matches_StatusId",
+                table: "Matches",
+                column: "StatusId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Matches_TournamentId",
                 table: "Matches",
                 column: "TournamentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Players_StatusId",
+                table: "Players",
+                column: "StatusId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Players_TeamId",
@@ -243,7 +308,13 @@ namespace CorporateSoccerWorldCup.Infrastructure.Migrations
                 name: "Players");
 
             migrationBuilder.DropTable(
+                name: "MatchStatuses");
+
+            migrationBuilder.DropTable(
                 name: "Tournaments");
+
+            migrationBuilder.DropTable(
+                name: "PlayerStatuses");
 
             migrationBuilder.DropTable(
                 name: "Teams");

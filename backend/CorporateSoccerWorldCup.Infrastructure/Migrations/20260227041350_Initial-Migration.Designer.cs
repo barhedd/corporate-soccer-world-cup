@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CorporateSoccerWorldCup.Infrastructure.Migrations
 {
     [DbContext(typeof(CorporateSoccerWorldCupContext))]
-    [Migration("20260224052304_Initial_Migration")]
-    partial class Initial_Migration
+    [Migration("20260227041350_Initial-Migration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -114,6 +114,9 @@ namespace CorporateSoccerWorldCup.Infrastructure.Migrations
                     b.Property<Guid>("LocalTeamId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("StatusId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("TournamentId")
                         .HasColumnType("uniqueidentifier");
 
@@ -123,9 +126,52 @@ namespace CorporateSoccerWorldCup.Infrastructure.Migrations
 
                     b.HasIndex("LocalTeamId");
 
+                    b.HasIndex("StatusId");
+
                     b.HasIndex("TournamentId");
 
                     b.ToTable("Matches", (string)null);
+                });
+
+            modelBuilder.Entity("CorporateSoccerWorldCup.Domain.Entities.MatchStatuses.MatchStatus", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset>("CreatedDate")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("DeletedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset?>("DeletedDate")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("EditedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset?>("EditedDate")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MatchStatuses", (string)null);
                 });
 
             modelBuilder.Entity("CorporateSoccerWorldCup.Domain.Entities.Player", b =>
@@ -164,17 +210,66 @@ namespace CorporateSoccerWorldCup.Infrastructure.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
+                    b.Property<int?>("SanctionedMatchesRemaining")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("StatusId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("TeamId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("StatusId");
 
                     b.HasIndex("TeamId");
 
                     b.ToTable("Players", (string)null);
                 });
 
-            modelBuilder.Entity("CorporateSoccerWorldCup.Domain.Entities.Team", b =>
+            modelBuilder.Entity("CorporateSoccerWorldCup.Domain.Entities.PlayerStatuses.PlayerStatus", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset>("CreatedDate")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("DeletedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset?>("DeletedDate")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("EditedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset?>("EditedDate")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PlayerStatuses", (string)null);
+                });
+
+            modelBuilder.Entity("CorporateSoccerWorldCup.Domain.Entities.Teams.Team", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -322,15 +417,21 @@ namespace CorporateSoccerWorldCup.Infrastructure.Migrations
 
             modelBuilder.Entity("CorporateSoccerWorldCup.Domain.Entities.Match", b =>
                 {
-                    b.HasOne("CorporateSoccerWorldCup.Domain.Entities.Team", "GuestTeam")
+                    b.HasOne("CorporateSoccerWorldCup.Domain.Entities.Teams.Team", "GuestTeam")
                         .WithMany("GuestMatches")
                         .HasForeignKey("GuestTeamId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("CorporateSoccerWorldCup.Domain.Entities.Team", "LocalTeam")
+                    b.HasOne("CorporateSoccerWorldCup.Domain.Entities.Teams.Team", "LocalTeam")
                         .WithMany("LocalMatches")
                         .HasForeignKey("LocalTeamId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("CorporateSoccerWorldCup.Domain.Entities.MatchStatuses.MatchStatus", "Status")
+                        .WithMany("Matches")
+                        .HasForeignKey("StatusId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -344,23 +445,33 @@ namespace CorporateSoccerWorldCup.Infrastructure.Migrations
 
                     b.Navigation("LocalTeam");
 
+                    b.Navigation("Status");
+
                     b.Navigation("Tournament");
                 });
 
             modelBuilder.Entity("CorporateSoccerWorldCup.Domain.Entities.Player", b =>
                 {
-                    b.HasOne("CorporateSoccerWorldCup.Domain.Entities.Team", "Team")
+                    b.HasOne("CorporateSoccerWorldCup.Domain.Entities.PlayerStatuses.PlayerStatus", "Status")
+                        .WithMany("Players")
+                        .HasForeignKey("StatusId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("CorporateSoccerWorldCup.Domain.Entities.Teams.Team", "Team")
                         .WithMany("Players")
                         .HasForeignKey("TeamId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("Status");
 
                     b.Navigation("Team");
                 });
 
             modelBuilder.Entity("CorporateSoccerWorldCup.Domain.Entities.TournamentTeam", b =>
                 {
-                    b.HasOne("CorporateSoccerWorldCup.Domain.Entities.Team", "Team")
+                    b.HasOne("CorporateSoccerWorldCup.Domain.Entities.Teams.Team", "Team")
                         .WithMany("TournamentTeams")
                         .HasForeignKey("TeamId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -382,12 +493,22 @@ namespace CorporateSoccerWorldCup.Infrastructure.Migrations
                     b.Navigation("Goals");
                 });
 
+            modelBuilder.Entity("CorporateSoccerWorldCup.Domain.Entities.MatchStatuses.MatchStatus", b =>
+                {
+                    b.Navigation("Matches");
+                });
+
             modelBuilder.Entity("CorporateSoccerWorldCup.Domain.Entities.Player", b =>
                 {
                     b.Navigation("Goals");
                 });
 
-            modelBuilder.Entity("CorporateSoccerWorldCup.Domain.Entities.Team", b =>
+            modelBuilder.Entity("CorporateSoccerWorldCup.Domain.Entities.PlayerStatuses.PlayerStatus", b =>
+                {
+                    b.Navigation("Players");
+                });
+
+            modelBuilder.Entity("CorporateSoccerWorldCup.Domain.Entities.Teams.Team", b =>
                 {
                     b.Navigation("GuestMatches");
 

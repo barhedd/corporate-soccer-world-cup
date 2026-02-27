@@ -1,10 +1,12 @@
 ﻿using CorporateSoccerWorldCup.Application.Abstractions.Messaging;
 using CorporateSoccerWorldCup.Domain.Entities;
 using CorporateSoccerWorldCup.Domain.Entities.Common;
-using CorporateSoccerWorldCup.Domain.Entities.Matches;
+using CorporateSoccerWorldCup.Domain.Entities.MatchStatuses;
+using CorporateSoccerWorldCup.Domain.Entities.PlayerStatuses;
 using CorporateSoccerWorldCup.Domain.Entities.Teams;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
+using System.Reflection;
 
 namespace CorporateSoccerWorldCup.Infrastructure.Contexts;
 
@@ -20,6 +22,8 @@ public class CorporateSoccerWorldCupContext(
     public DbSet<TournamentTeam> TournamentTeams { get; set; }
     public DbSet<Match> Matches { get; set; }
     public DbSet<Goal> Goals { get; set; }
+    public DbSet<MatchStatus> MatchStatuses { get; set; }
+    public DbSet<PlayerStatus> PlayerStatuses { get; set; }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

@@ -1,6 +1,6 @@
 ﻿using CorporateSoccerWorldCup.Domain.Entities.Common;
-using CorporateSoccerWorldCup.Domain.Entities.Matches;
 using CorporateSoccerWorldCup.Domain.Entities.Teams.Events;
+using System.Text.Json.Serialization;
 
 namespace CorporateSoccerWorldCup.Domain.Entities.Teams;
 
@@ -13,6 +13,7 @@ public class Team : BaseEntity
     public ICollection<Match> LocalMatches { get; set; } = [];
     public ICollection<Match> GuestMatches { get; set; } = [];
 
+    [JsonConstructor]
     private Team() { }
 
     public static Team Create(string name, string imageUrl)

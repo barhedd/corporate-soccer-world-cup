@@ -9,6 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="DataSeed\matchStatuses.json" />
+    <Content Remove="DataSeed\playerStatuses.json" />
+    <Content Remove="DataSeed\teams.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.24" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.24">
       <PrivateAssets>all</PrivateAssets>
@@ -32,6 +38,12 @@
   <ItemGroup>
     <ProjectReference Include="..\CorporateSoccerWorldCup.Application\CorporateSoccerWorldCup.Application.csproj" />
     <ProjectReference Include="..\CorporateSoccerWorldCup.Infrastructure\CorporateSoccerWorldCup.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="DataSeed\*.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

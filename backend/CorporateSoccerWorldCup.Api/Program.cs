@@ -6,6 +6,7 @@ using CorporateSoccerWorldCup.Domain.Abstractions;
 using CorporateSoccerWorldCup.Domain.Abstractions.Repositories;
 using CorporateSoccerWorldCup.Infrastructure.ConnectionFactories;
 using CorporateSoccerWorldCup.Infrastructure.Contexts;
+using CorporateSoccerWorldCup.Infrastructure.DataSeed;
 using CorporateSoccerWorldCup.Infrastructure.Events;
 using CorporateSoccerWorldCup.Infrastructure.Persistence;
 using CorporateSoccerWorldCup.Infrastructure.Persistence.ReadRepositories;
@@ -42,17 +43,27 @@ builder.Services.Scan(scan => scan
     .AsImplementedInterfaces()
     .WithScopedLifetime());
 
+builder.Services.Decorate(
+    typeof(ICommandHandler<,>),
+    typeof(LoggingCommandHandlerDecorator<,>));
+
+builder.Services.Scan(scan => scan
+    .FromApplicationDependencies()
+    .AddClasses(classes => classes.AssignableTo(typeof(ICommandHandler<>)))
+    .AsImplementedInterfaces()
+    .WithScopedLifetime());
+
+builder.Services.Decorate(
+    typeof(ICommandHandler<>),
+    typeof(LoggingCommandHandlerDecoratorWithoutResult<>)
+);
+
 // Queries
 builder.Services.Scan(scan => scan
     .FromApplicationDependencies()
     .AddClasses(classes => classes.AssignableTo(typeof(IQueryHandler<,>)))
     .AsImplementedInterfaces()
     .WithScopedLifetime());
-
-// Logging decorators
-builder.Services.Decorate(
-    typeof(ICommandHandler<,>),
-    typeof(LoggingCommandHandlerDecorator<,>));
 
 builder.Services.Decorate(
     typeof(IQueryHandler<,>),
@@ -111,6 +122,8 @@ using (var scope = app.Services.CreateScope())
         try
         {
             dbContext.Database.Migrate();
+            await dbContext.SeedAsync();
+           
             break;
         }
         catch
